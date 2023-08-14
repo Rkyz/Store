@@ -13,7 +13,7 @@ import 'swiper/css/pagination';
 import { Pagination } from "swiper/modules";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import ButtonCS from "../../components/CustomerService/ButtonCS";
-import ChatAdmin from "../../components/Layouts/ChatAdmin";
+import ChatAdmin from "../../components/CustomerService/ChatAdmin";
 
 const Dashboard = () => {
     const [expanded, setExpanded] = useState(false);

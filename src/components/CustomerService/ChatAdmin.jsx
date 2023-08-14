@@ -77,7 +77,7 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
     };
 
     return (
-        <div className={`text-white overflow-hidden bg-blue-500 z-50 bottom-0 fixed lg:h-auto lg:w-[400px] right-[30px] rounded-3xl ${openCs ? ' bottom-[30px]' : 'lg:h-0 lg:w-0'}`}>
+        <div className={`text-white overflow-hidden bg-blue-500 z-50 bottom-0 fixed lg:h-auto lg:w-[400px] max-lg:hidden right-[30px] rounded-3xl ${openCs ? ' bottom-[30px]' : 'lg:h-0 lg:w-0'}`}>
             <div className={`lg:w-full bg-yellow-500 h-[50px] rounded-t-2xl flex justify-between items-center max-lg:hidden px-[20px] ${openCs ? '' : ' lg:hidden'}`}>
                 <ul className="flex">
                     <li className="flex items-center mr-1">
