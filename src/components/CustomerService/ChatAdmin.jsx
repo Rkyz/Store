@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import { AiOutlineSend } from 'react-icons/ai';
+import { BsTrash } from 'react-icons/bs';
+import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
 
 // eslint-disable-next-line react/prop-types
 const ChatAdmin = ({ openCs, toggleOpenCs }) => {
@@ -28,6 +30,80 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
             setSelectedImage(null);
             setRecordedAudio(null);
             setIsRecording(false);
+
+            setTimeout(() => {
+                let botResponse = {
+                    text: 'I cannot help you with that.',
+                    sender: 'bot'
+                };
+
+                const userMessage = newMessage.toLowerCase();
+
+                if (userMessage.includes('cara top up')) {
+                    botResponse = {
+                        text: 'Untuk top up voucher game, Anda biasanya perlu masuk ke akun game Anda dan pilih opsi "Top Up" atau "Isi Saldo". Kemudian, pilih metode pembayaran yang Anda inginkan dan ikuti instruksi yang diberikan.',
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('masalah pembayaran')) {
+                    botResponse = {
+                        text: 'Jika Anda mengalami masalah saat pembayaran, pastikan Anda menggunakan metode pembayaran yang benar dan memiliki saldo yang cukup. Jika masalah berlanjut, Anda dapat menghubungi layanan pelanggan game atau penyedia layanan pembayaran.',
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('voucher tidak valid')) {
+                    botResponse = {
+                        text: 'Jika Anda mengalami masalah dengan voucher yang tidak valid, coba periksa kembali kode voucher yang Anda masukkan. Pastikan Anda memasukkan kode dengan benar dan tidak ada kesalahan pengetikan.',
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('top up gagal')) {
+                    botResponse = {
+                        text: 'Jika top up gagal, pastikan koneksi internet Anda stabil dan tidak ada gangguan saat proses pembayaran. Jika masalah tetap berlanjut, coba ulangi proses top up atau hubungi layanan pelanggan game.',
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('pembayaran tidak masuk')) {
+                    botResponse = {
+                        text: 'Jika pembayaran Anda sudah dikonfirmasi tetapi belum masuk, tunggu beberapa saat karena proses verifikasi pembayaran memerlukan waktu. Jika masalah berlanjut, hubungi layanan pelanggan game atau penyedia layanan pembayaran.',
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('metode pembayaran')) {
+                    botResponse = {
+                        text: 'Anda bisa menggunakan berbagai metode pembayaran seperti kartu kredit, transfer bank, e-wallet, atau voucher fisik. Pilih metode yang paling sesuai dengan Anda dan pastikan informasi pembayaran Anda akurat.',
+                        sender: 'bot'
+                    };
+                }
+                else if (userMessage.includes('voucher kadaluarsa')) {
+                    botResponse = {
+                        text: 'Voucher game biasanya memiliki tanggal kadaluarsa. Pastikan Anda menggunakan voucher sebelum tanggal tersebut untuk menghindari masalah.',
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('top up minimum')) {
+                    botResponse = {
+                        text: 'Beberapa game memiliki batas top up minimum. Pastikan jumlah top up Anda mencapai batas minimum yang ditentukan oleh game tersebut.',
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('hubungi layanan pelanggan')) {
+                    botResponse = {
+                        text: 'Jika Anda mengalami masalah yang tidak bisa diatasi sendiri, jangan ragu untuk menghubungi layanan pelanggan game. Mereka akan membantu Anda menyelesaikan masalah Anda.',
+                        sender: 'bot'
+                    };
+                }else if (userMessage.includes('jam sekarang')) {
+                    const currentTime = new Date().toLocaleTimeString('en-US');
+                    botResponse = {
+                        text: `Sekarang pukul ${currentTime}`,
+                        sender: 'bot'
+                    };
+                } else if (userMessage.includes('tanggal sekarang')) {
+                    const currentDate = new Date().toLocaleDateString('en-US');
+                    botResponse = {
+                        text: `Sekarang tanggal ${currentDate}`,
+                        sender: 'bot'
+                    };
+                }
+
+                setMessages([...newMessages, botResponse]);
+            }, 500); 
+
+
+
             if (audioRecorderRef.current) {
                 audioRecorderRef.current.stop();
             }
@@ -76,12 +152,14 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
         }
     };
 
+    
+
     return (
-        <div className={`text-white overflow-hidden bg-blue-500 z-50 bottom-0 fixed lg:h-auto lg:w-[400px] max-lg:hidden right-[30px] rounded-3xl ${openCs ? ' bottom-[30px]' : 'lg:h-0 lg:w-0'}`}>
-            <div className={`lg:w-full bg-yellow-500 h-[50px] rounded-t-2xl flex justify-between items-center max-lg:hidden px-[20px] ${openCs ? '' : ' lg:hidden'}`}>
+        <div className={`text-white overflow-hidden border-[1px] border-blue-500 bg-Darkmode z-50 bottom-0 fixed lg:h-auto lg:w-[400px] right-[30px] rounded-3xl ${openCs ? ' bottom-[30px] max-lg:hidden' : 'lg:h-0 lg:w-0 hidden'}`}>
+            <div className={`lg:w-full bg-DarkBad h-[50px] rounded-t-2xl flex justify-between items-center max-lg:hidden px-[20px] ${openCs ? '' : ' lg:hidden'}`}>
                 <ul className="flex">
                     <li className="flex items-center mr-1">
-                        <div className="w-[5px] h-[5px] bg-black rounded-full"></div>
+                        <div className="w-[5px] h-[5px] bg-yellow-500 rounded-full"></div>
                     </li>
                     <li>Name</li>
                 </ul>
@@ -111,29 +189,34 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
                     </div>
                 ))}
             </div>
-            <div className="flex flex-col px-5 text-black w-full bottom-10 py-2 mt-5 bg-yellow-500">
-                <div className='flex'>
+            <div className="flex flex-col px-5 gap-y-5 text-black w-full bottom-10 py-5 bg-DarkBad">
+                <div className={`flex ${isRecording ? 'h-[42px]':'h-[42px]'}`}>
                     <input
                         type="text"
-                        className="flex-grow border rounded-md p-2"
+                        className={`flex-grow border border-blue-500 text-white bg-transparent outline-none rounded-l-lg p-2  ${recordedAudio ? 'w-auto':''}`}
                         placeholder="Type your message..."
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                     />
                     {newMessage.trim() === '' ? (
                         <div className="flex">
-                            <button onClick={handleRecordAudio} className={`bg-blue-500 text-white px-4 rounded-r-lg ${isRecording ? 'bg-red-500' : 'hover:bg-blue-700'}`}>
-                                {isRecording ? 'Stop Recording' : 'Record Audio'}
+                            <button onClick={handleRecordAudio} className={`bg-blue-500 text-white px-4 ${recordedAudio ? '':'rounded-r-lg'}  ${isRecording ? 'bg-red-500' : 'hover:bg-blue-700'}`}>
+                                {isRecording ? <BiMicrophoneOff /> : <BiMicrophone />}
                             </button>
                             {recordedAudio && (
-                                <button onClick={handleDeleteAudio} className="bg-red-500 text-white px-4 rounded-r-lg ml-2">
-                                    Delete Audio
+                                <button onClick={handleDeleteAudio} className="bg-blue-500 hover:bg-red-500 text-white px-4">
+                                    <BsTrash />
+                                </button>
+                            )}
+                            {recordedAudio && (
+                                <button onClick={handleSendMessage} className="bg-blue-500 text-white px-4 rounded-r-lg">
+                                    <AiOutlineSend />
                                 </button>
                             )}
                         </div>
                     ) : (
                         <button onClick={handleSendMessage} className="bg-blue-500 text-white px-4 rounded-r-lg">
-                            <AiOutlineSend className="text-4xl" />
+                            <AiOutlineSend />
                         </button>
                     )}
                 </div>

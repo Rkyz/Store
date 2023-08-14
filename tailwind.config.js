@@ -9,6 +9,7 @@ export default {
       colors:{
         'Darkmode': '#323048',
         'maindark': '#252F45',
+        'DarkBad': '#13182B',
       }
     },
   },
