@@ -1,0 +1,26 @@
+.swiper-button-next,
+.swiper-button-prev{
+    background-color: #13182B;
+    padding: 30px;
+    transform: translateY(-15px);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after{
+    color: white;
+}
+
+.swiper-button-next::after{
+    position: relative;
+    left: 3px;
+}
+.swiper-button-prev::after{
+    position: relative;
+    left: -3px;
+}
