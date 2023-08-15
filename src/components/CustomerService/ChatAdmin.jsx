@@ -1,9 +1,12 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import { AiOutlineSend } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
 import { getBotResponse } from './messageResponses';
+import { useNavigate } from 'react-router-dom';
+
+
 
 // eslint-disable-next-line react/prop-types
 const ChatAdmin = ({ openCs, toggleOpenCs }) => {
@@ -14,9 +17,34 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
     const [isRecording, setIsRecording] = useState(false);
     const audioRecorderRef = useRef(null);
     const audioPlayerRef = useRef(null);
+    const Navigate = useNavigate();
+
+
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    };
+
+    
+    useEffect(() => {
+        if (newMessage.trim() === '') {
+            document.removeEventListener('keydown', handleKeyPress);
+        } else {
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    },);
 
     const handleSendMessage = () => {
+
         if (newMessage.trim() !== '' || selectedImage || recordedAudio) {
+            
             const newMessages = [
                 ...messages,
                 {
@@ -41,6 +69,16 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
             if (audioRecorderRef.current) {
                 audioRecorderRef.current.stop();
             }
+
+            setTimeout(() => {
+                const botResponse = getBotResponse(newMessage.toLowerCase());
+                setMessages([...newMessages, botResponse]);
+        
+                // Check if bot response contains redirectTo property
+                if (botResponse.redirectTo) {
+                    Navigate(botResponse.redirectTo);
+                }
+            }, 500);
         }
     };
 
@@ -108,7 +146,7 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
             <div className="p-4 overflow-scroll scrollbar-hidden h-[500px]">
                 {messages.map((message, index) => (
                     <div key={index} className={`mb-4 ${message.sender === 'user' ? 'text-right' : ''}`}>
-                        <div className={`p-2 rounded-lg ${message.sender === 'user' ? 'bg-gray-300' : 'bg-blue-700'}`}>
+                        <div className={`p-2 rounded-lg ${message.sender === 'user' ? 'bg-gray-300 text-black' : 'bg-blue-700'}`}>
                             {message.text}
                             {message.image && <img src={message.image} alt="User" className="max-w-full mt-2" />}
                             {message.audio && (
