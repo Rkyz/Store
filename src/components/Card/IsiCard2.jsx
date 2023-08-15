@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 function IsiCard2() {
-  const numCards = 5; // Jumlah kartu yang ingin ditampilkan
-  const [cards, setCards] = useState(Array.from({ length: numCards }));
+  const numCards = 4; // Jumlah kartu yang ingin ditampilkan
+  const [cards] = useState(Array.from({ length: numCards }));
 
   return (
     <div className="h-[auto]  w-[100%] justify-center flex gap-x-5 gap-y-20 flex-wrap ">

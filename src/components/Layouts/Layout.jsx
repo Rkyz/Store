@@ -87,28 +87,10 @@ const Layout = ({ expanded, toggleExpansion, handleSearchClick }) => {
                                 Winrate
                             </NavLink>
                         </li>
-                        <li className={`h-[7vh] flex items-center px-8 ${expanded ? '' : 'bg-transparent'} ${currentPath === '/hitungwr' && expanded ? 'bg-blue-500' : ''}`}>
+                        <li className={`h-[7vh] flex items-center px-8 ${expanded ? '' : 'bg-transparent'} ${currentPath === '/hitungzodiac' && expanded ? 'bg-blue-500' : ''}`}>
                         <NavLink to='/hitungwr' className={`text-sm w-full flex items-center ${expanded ? 'flex-row gap-6' : 'flex-col hidden'}`}>
                             <TbZodiacLibra className='text-3xl font-bold' />
-                            Winrate
-                        </NavLink>
-                    </li>
-                    <li className={`h-[7vh] flex items-center px-8 ${expanded ? '' : 'bg-transparent'} ${currentPath === '/hitungwr' && expanded ? 'bg-blue-500' : ''}`}>
-                        <NavLink to='/hitungwr' className={`text-sm w-full flex items-center ${expanded ? 'flex-row gap-6' : 'flex-col hidden'}`}>
-                            <TbZodiacLibra className='text-3xl font-bold' />
-                            Winrate
-                        </NavLink>
-                    </li>
-                    <li className={`h-[7vh] flex items-center px-8 ${expanded ? '' : 'bg-transparent'} ${currentPath === '/hitungwr' && expanded ? 'bg-blue-500' : ''}`}>
-                        <NavLink to='/hitungwr' className={`text-sm w-full flex items-center ${expanded ? 'flex-row gap-6' : 'flex-col hidden'}`}>
-                            <TbZodiacLibra className='text-3xl font-bold' />
-                            Winrate
-                        </NavLink>
-                    </li>
-                    <li className={`h-[7vh] flex items-center px-8 ${expanded ? '' : 'bg-transparent'} ${currentPath === '/hitungwr' && expanded ? 'bg-blue-500' : ''}`}>
-                        <NavLink to='/hitungwr' className={`text-sm w-full flex items-center ${expanded ? 'flex-row gap-6' : 'flex-col hidden'}`}>
-                            <TbZodiacLibra className='text-3xl font-bold' />
-                            Winrate
+                            Zodiac
                         </NavLink>
                     </li>
                     </div>

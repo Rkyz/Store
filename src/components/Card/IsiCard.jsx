@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'; // Import PropTypes
 
 
 function IsiCard({ CardList }) {
-  const numCards = 5; // Jumlah kartu yang ingin ditampilkan
-  const [cards, setCards] = useState(Array.from({ length: numCards }));
+  const numCards = 6; // Jumlah kartu yang ingin ditampilkan
+  const [cards] = useState(Array.from({ length: numCards }));
 
   return (
     <div 

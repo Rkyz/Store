@@ -14,6 +14,7 @@ import { Pagination } from "swiper/modules";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import ButtonCS from "../../components/CustomerService/ButtonCS";
 import ChatAdmin from "../../components/CustomerService/ChatAdmin";
+import SearchCard from "../../components/Card/SearchCard";
 
 const Dashboard = () => {
     const [expanded, setExpanded] = useState(false);
@@ -105,16 +106,19 @@ const Dashboard = () => {
                     </div>
                     <Card/>
                     <div 
-                        className={`w-full flex text-center justify-center gap-3 ${
+                        className={`w-full flex justify-start gap-3 ${
                                 CardList ? 'mb-6' : ' mb-6'
                               } ${
-                                searchActive ? 'max-lg:fixed bg-black max-lg:z-40 max-lg:top-0 max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:w-full max-lg:h-full items-start max-lg:p-10' : 'items-center'
+                                searchActive ? 'max-lg:fixed max-lg:flex-col bg-DarkBad max-lg:z-40 max-lg:top-0 max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:w-full max-lg:h-full items-start max-lg:p-10' : 'items-center'
                               }`}>
                     <input
                             type="search"
                             placeholder="Cari Disini"
                             className={`max-lg:w-[90%] lg:w-[100%] bg-transparent border-[0.1px] rounded-xl p-2 text-white border-gray-500 focus:outline-none focus:border-gray-500 lg:hidden ${searchActive ? 'max-lg:w-full':''}`}
                         />
+                        <div className={`${searchActive ? 'bg-black w-full max-lg:mb-[80px] text-white h-full lg:hidden':'hidden'}`}>
+                            <SearchCard/>
+                        </div>
                     <button className={`lg:hidden ${searchActive ? 'max-lg:hidden':''}`} onClick={toggleList}>
                       <AiOutlineUnorderedList className="text-white text-4xl"/>
                     </button>
