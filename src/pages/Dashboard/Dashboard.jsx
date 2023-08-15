@@ -82,7 +82,8 @@ const Dashboard = () => {
                 <ChatAdmin openCs={openCs} toggleOpenCs={toggleOpenCs}/>
             </div>
             <div className="max-lg:h-[50rem] scrollbar-hidden relative">
-                <div className="lg:ml-[130px] max-lg:mx-[30px] mt-[30px] lg:mr-[30px] h-[40vh]">
+                <div className={`lg:ml-[130px] max-lg:mx-[30px] mt-[30px] max-lg:mr-[30px] lg:mr-[30px] h-[40vh]  ${searchActive ? 'max-lg:mx-[0px]' : ''
+                              }`}>
                     <SwiperCard/>
                     <div className="flex justify-between">
                         <ul>
@@ -104,17 +105,17 @@ const Dashboard = () => {
                     </div>
                     <Card/>
                     <div 
-                        className={`w-full flex items-center text-center justify-center gap-3 ${
+                        className={`w-full flex text-center justify-center gap-3 ${
                                 CardList ? 'mb-6' : ' mb-6'
                               } ${
-                                searchActive ? 'max-lg:hidden' : ''
+                                searchActive ? 'max-lg:fixed bg-black max-lg:z-40 max-lg:top-0 max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:w-full max-lg:h-full items-start max-lg:p-10' : 'items-center'
                               }`}>
                     <input
                             type="search"
                             placeholder="Cari Disini"
-                            className={`max-lg:w-[90%] lg:w-[100%] bg-transparent border-[0.1px] rounded-xl p-2 text-white border-gray-500 focus:outline-none focus:border-gray-500lg:hidden`}
+                            className={`max-lg:w-[90%] lg:w-[100%] bg-transparent border-[0.1px] rounded-xl p-2 text-white border-gray-500 focus:outline-none focus:border-gray-500 lg:hidden ${searchActive ? 'max-lg:w-full':''}`}
                         />
-                    <button className="lg:hidden" onClick={toggleList}>
+                    <button className={`lg:hidden ${searchActive ? 'max-lg:hidden':''}`} onClick={toggleList}>
                       <AiOutlineUnorderedList className="text-white text-4xl"/>
                     </button>
                     </div>

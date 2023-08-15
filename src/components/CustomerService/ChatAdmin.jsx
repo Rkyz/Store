@@ -3,6 +3,7 @@ import { MdOutlineClose } from 'react-icons/md';
 import { AiOutlineSend } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
+import { getBotResponse } from './messageResponses';
 
 // eslint-disable-next-line react/prop-types
 const ChatAdmin = ({ openCs, toggleOpenCs }) => {
@@ -32,76 +33,9 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
             setIsRecording(false);
 
             setTimeout(() => {
-                let botResponse = {
-                    text: 'I cannot help you with that.',
-                    sender: 'bot'
-                };
-
-                const userMessage = newMessage.toLowerCase();
-
-                if (userMessage.includes('cara top up')) {
-                    botResponse = {
-                        text: 'Untuk top up voucher game, Anda biasanya perlu masuk ke akun game Anda dan pilih opsi "Top Up" atau "Isi Saldo". Kemudian, pilih metode pembayaran yang Anda inginkan dan ikuti instruksi yang diberikan.',
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('masalah pembayaran')) {
-                    botResponse = {
-                        text: 'Jika Anda mengalami masalah saat pembayaran, pastikan Anda menggunakan metode pembayaran yang benar dan memiliki saldo yang cukup. Jika masalah berlanjut, Anda dapat menghubungi layanan pelanggan game atau penyedia layanan pembayaran.',
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('voucher tidak valid')) {
-                    botResponse = {
-                        text: 'Jika Anda mengalami masalah dengan voucher yang tidak valid, coba periksa kembali kode voucher yang Anda masukkan. Pastikan Anda memasukkan kode dengan benar dan tidak ada kesalahan pengetikan.',
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('top up gagal')) {
-                    botResponse = {
-                        text: 'Jika top up gagal, pastikan koneksi internet Anda stabil dan tidak ada gangguan saat proses pembayaran. Jika masalah tetap berlanjut, coba ulangi proses top up atau hubungi layanan pelanggan game.',
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('pembayaran tidak masuk')) {
-                    botResponse = {
-                        text: 'Jika pembayaran Anda sudah dikonfirmasi tetapi belum masuk, tunggu beberapa saat karena proses verifikasi pembayaran memerlukan waktu. Jika masalah berlanjut, hubungi layanan pelanggan game atau penyedia layanan pembayaran.',
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('metode pembayaran')) {
-                    botResponse = {
-                        text: 'Anda bisa menggunakan berbagai metode pembayaran seperti kartu kredit, transfer bank, e-wallet, atau voucher fisik. Pilih metode yang paling sesuai dengan Anda dan pastikan informasi pembayaran Anda akurat.',
-                        sender: 'bot'
-                    };
-                }
-                else if (userMessage.includes('voucher kadaluarsa')) {
-                    botResponse = {
-                        text: 'Voucher game biasanya memiliki tanggal kadaluarsa. Pastikan Anda menggunakan voucher sebelum tanggal tersebut untuk menghindari masalah.',
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('top up minimum')) {
-                    botResponse = {
-                        text: 'Beberapa game memiliki batas top up minimum. Pastikan jumlah top up Anda mencapai batas minimum yang ditentukan oleh game tersebut.',
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('hubungi layanan pelanggan')) {
-                    botResponse = {
-                        text: 'Jika Anda mengalami masalah yang tidak bisa diatasi sendiri, jangan ragu untuk menghubungi layanan pelanggan game. Mereka akan membantu Anda menyelesaikan masalah Anda.',
-                        sender: 'bot'
-                    };
-                }else if (userMessage.includes('jam sekarang')) {
-                    const currentTime = new Date().toLocaleTimeString('en-US');
-                    botResponse = {
-                        text: `Sekarang pukul ${currentTime}`,
-                        sender: 'bot'
-                    };
-                } else if (userMessage.includes('tanggal sekarang')) {
-                    const currentDate = new Date().toLocaleDateString('en-US');
-                    botResponse = {
-                        text: `Sekarang tanggal ${currentDate}`,
-                        sender: 'bot'
-                    };
-                }
-
+                const botResponse = getBotResponse(newMessage.toLowerCase()); // Use the imported function
                 setMessages([...newMessages, botResponse]);
-            }, 500); 
-
+            }, 500);
 
 
             if (audioRecorderRef.current) {
@@ -161,7 +95,7 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
                     <li className="flex items-center mr-1">
                         <div className="w-[5px] h-[5px] bg-yellow-500 rounded-full"></div>
                     </li>
-                    <li>Name</li>
+                    <li>Bot</li>
                 </ul>
                 <ul>
                     <li>
