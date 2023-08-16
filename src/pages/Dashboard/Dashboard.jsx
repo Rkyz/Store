@@ -4,7 +4,7 @@ import Footer from "../../components/Layouts/Footer";
 import Layout from "../../components/Layouts/Layout";
 import SwiperCard from "../../components/Layouts/SwiperCard";
 import TopLayout from "../../components/Layouts/TopLayout";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {GrLinkPrevious, GrLinkNext} from "react-icons/gr";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -43,37 +43,21 @@ const Dashboard = () => {
     const [selectedVideo, setSelectedVideo] = useState(1);
 
     const videos = [
-        { id: 1, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://www.youtube.com/embed/eLD6crse074.jpg' },
-        { id: 2, url: 'https://www.youtube.com/embed/zPWA5w0Yxco', thumbnail: 'https://www.youtube.com/embed/zPWA5w0Yxco.jpg' },
-        { id: 3, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://www.youtube.com/embed/eLD6crse074.jpg' },
-      ];
+        { id: 1, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://img.youtube.com/vi/eLD6crse074/maxresdefault.jpg' },
+        { id: 2, url: 'https://www.youtube.com/embed/zPWA5w0Yxco', thumbnail: 'https://img.youtube.com/vi/zPWA5w0Yxco/maxresdefault.jpg' },
+        { id: 3, url: 'https://www.youtube.com/embed/L6mQuFiVmx4', thumbnail: 'https://img.youtube.com/vi/L6mQuFiVmx4/maxresdefault.jpg' },
+        { id: 3, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://img.youtube.com/vi/eLD6crse074/maxresdefault.jpg' },
+        { id: 3, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://img.youtube.com/vi/eLD6crse074/maxresdefault.jpg' },
+        { id: 3, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://img.youtube.com/vi/eLD6crse074/maxresdefault.jpg' },
+        { id: 3, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://img.youtube.com/vi/eLD6crse074/maxresdefault.jpg' },
+        { id: 3, url: 'https://www.youtube.com/embed/eLD6crse074', thumbnail: 'https://img.youtube.com/vi/eLD6crse074/maxresdefault.jpg' },
+    ];
       
   
     const handleVideoClick = (videoId) => {
       setSelectedVideo(videoId);
     };
 
-
-    
-  const [swiperDirection, setSwiperDirection] = useState('vertical');
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setSwiperDirection('horizontal');
-      } else {
-        setSwiperDirection('vertical');
-      }
-    };
-
-    handleResize(); // Panggil fungsi pertama kali
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup listener pada unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
     return (
         <div className="relative ">
@@ -83,7 +67,7 @@ const Dashboard = () => {
                 <ChatAdmin openCs={openCs} toggleOpenCs={toggleOpenCs}/>
             </div>
             <div className="max-lg:h-[50rem] scrollbar-hidden relative">
-                <div className={`lg:ml-[130px] max-lg:mx-[30px] mt-[30px] max-lg:mr-[30px] lg:mr-[30px] h-[40vh]  ${searchActive ? 'max-lg:mx-[0px]' : ''
+                <div className={`lg:ml-[130px] max-lg:mx-[30px] max-md:mx-[15px] lg:mr-[30px] h-[40vh]  ${searchActive ? 'max-lg:mx-[10px]' : ''
                               }`}>
                     <SwiperCard/>
                     <div className="flex justify-between">
@@ -109,12 +93,12 @@ const Dashboard = () => {
                         className={`w-full flex justify-start gap-3 ${
                                 CardList ? 'mb-6' : ' mb-6'
                               } ${
-                                searchActive ? 'max-lg:fixed max-lg:flex-col bg-DarkBad max-lg:z-40 max-lg:top-0 max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:w-full max-lg:h-full items-start max-lg:p-10' : 'items-center'
+                                searchActive ? 'max-lg:fixed max-lg:flex-col bg-DarkBad max-lg:z-40 max-lg:top-0 max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:w-full max-lg:h-full items-start max-lg:p-10 overflow-y-scroll' : 'items-center'
                               }`}>
                     <input
                             type="search"
                             placeholder="Cari Disini"
-                            className={`max-lg:w-[90%] lg:w-[100%] bg-transparent border-[0.1px] rounded-xl p-2 text-white border-gray-500 focus:outline-none focus:border-gray-500 lg:hidden ${searchActive ? 'max-lg:w-full':''}`}
+                            className={`max-lg:w-[90%] lg:w-[100%] bg-transparent border-[0.1px] rounded-xl p-2 text-white border-gray-500 focus:outline-none focus:border-gray-500 lg:hidden ${searchActive ? 'max-lg:w-full mb-14':''}`}
                         />
                         <div className={`${searchActive ? 'bg-black w-full max-lg:mb-[80px] text-white h-full lg:hidden':'hidden'}`}>
                             <SearchCard/>
@@ -134,36 +118,66 @@ const Dashboard = () => {
                         <h1 className="text-white text-[32px] font-bold mb-7">Info Terkini</h1>
                         <div className="w-full flex max-lg:flex-col mb-10">
                         <div className="w-full h-[35rem] flex max-lg:flex-col">
-                            <div className="w-[70%] bg-gray-300 max-lg:w-full h-[100%] max-lg:h-[70%]">
+                            <div className="w-[70%] bg-transparent max-lg:w-full h-[100%] max-lg:h-[65%] rounded-lg lg:mr-5 max-lg:mb-5">
                                 {selectedVideo && (
                                 <iframe
                                     title="Video Player"
                                     src={videos.find((video) => video.id === selectedVideo)?.url}
-                                    className="w-full h-full"
+                                    className="w-full h-full rounded-lg"
                                     frameBorder="0"
                                     allowFullScreen
                                 ></iframe>
                                 )}
                             </div>
-                            <div className="w-[30%] max-lg:w-full h-[100%] max-lg:h-[30%]">
+                            <div className="w-[30%] max-lg:w-full h-[100%] max-lg:h-[35%]">
                             <Swiper
-                                direction={swiperDirection}
-                                modules={Pagination}
+                                spaceBetween={20}
+                                modules={[Pagination]}
                                 pagination={{ clickable: true }}
-                                className="w-full h-full bg-yellow-500"
+                                className="w-full h-full bg-transparent rounded-lg"
+                                loop={true}
+                                breakpoints={{
+                                    1024: {
+                                        slidesPerView: 2,
+                                        direction:'vertical'
+                                    },
+                                    1:{
+                                        direction:'horizontal',
+                                        slidesPerView: 1,
+
+                                    }
+                                }}
+                            >
+                            {videos.map((video) => (
+                            <SwiperSlide key={video.id}>
+                                <div
+                                    className="flex justify-center items-center h-full object-cover  cursor-pointer bg-center"
+                                    onClick={() => handleVideoClick(video.id)}
+                                    style={{
+                                        backgroundImage: `url(${video.thumbnail})`,
+                                        backgroundSize: 'cover',
+                                    }}
                                 >
-                                {videos.map((video) => (
-                                    <SwiperSlide key={video.id}>
-                                    <div
-                                        className="flex justify-center items-center h-full cursor-pointer"
-                                        onClick={() => handleVideoClick(video.id)}
-                                        style={{ backgroundImage: `url(${video.thumbnail})`, backgroundSize: 'cover' }}
-                                    >
-                                        Video {video.id}
-                                    </div>
-                                    </SwiperSlide>
-                                ))}
-                                </Swiper>
+                                    {selectedVideo && selectedVideo.id === video.id ? (
+                                        <video
+                                            src={video.url}
+                                            className="w-full h-full"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            style={{
+                                                objectFit: 'contain',
+                                                width: '100%',
+                                                height: '100%',
+                                            }}
+                                        ></video>
+                                    ) : null}
+                                </div>
+
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+
                             </div>
                             </div>
                         </div>

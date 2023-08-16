@@ -25,7 +25,7 @@ const SwiperCard = () => {
             coverflowEffect={{ rotate: 30, slideShadows: false }} // Konfigurasi efek coverflow
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
-            className='h-full z-10 mt-[130px]'
+            className='h-full z-10 lg:mt-[130px] max-lg:mt-[130px] max-md:mt-[115px]'
         >
             <SwiperSlide>
                 <div className="bg-Darkmode border-gray-600 text-white rounded-xl shadow-lg flex h-full max-lg:flex-col z-30">

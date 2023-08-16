@@ -3,12 +3,20 @@ import Swal from "sweetalert2"; // Import SweetAlert
 import Layout from "../../components/Layouts/Layout";
 import TopLayout from "../../components/Layouts/TopLayout";
 import Footer from "../../components/Layouts/Footer";
+import ChatAdmin from "../../components/CustomerService/ChatAdmin";
+import ButtonCS from "../../components/CustomerService/ButtonCS";
 
 const HitungWR = () => {
     const [expanded, setExpanded] = useState(false);
 
     const toggleExpansion = () => {
         setExpanded(!expanded);
+    };
+
+    const [openCs, setOpenCs] = useState(false);
+
+    const toggleOpenCs = () => {
+        setOpenCs(!openCs);
     };
 
     const calculateMatchesToTarget = (totalMatches, currentWinrate, targetWinrate) => {
@@ -47,6 +55,7 @@ const HitungWR = () => {
             <div className="flex transition-all duration-1000">
                 <Layout expanded={expanded} toggleExpansion={toggleExpansion} />
                 <TopLayout expanded={expanded} />
+                <ChatAdmin openCs={openCs} toggleOpenCs={toggleOpenCs}/>
             </div>
             <div className="overflow-y-scroll scrollbar-hidden h-full lg:pl-[130px] mt-[130px] max-lg:px-[30px] lg:pr-[30px]">
                 <div className="mt-[30px] max-lg:h-[60vh] h-[50vh]">
@@ -70,6 +79,7 @@ const HitungWR = () => {
                 </div>
                 <Footer/>
             </div>
+            <ButtonCS toggleOpenCs={toggleOpenCs} openCs={openCs}/>
         </div>
     );
 };
