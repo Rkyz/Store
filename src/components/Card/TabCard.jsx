@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import IsiCard from './IsiCard';
-import Card2 from './isiCard1';
-import Card3 from './IsiCard2';
+import Mobile from './MobileCard';
+import Pc from './PcCard';
+import Voucher from './VoucherCard';
 import PropTypes from 'prop-types'; 
 
 function TabCard({ CardList }) {
@@ -13,7 +13,7 @@ function TabCard({ CardList }) {
     <div className="mx-auto ">
       <div
                 className={`flex space-x-4  justify-center ${
-                  CardList ? 'mb-7' : 'mb-24'
+                  CardList ? 'mb-7' : ''
                 }`}>
         {tabs.map((tab, index) => (
           <button
@@ -36,15 +36,15 @@ function TabCard({ CardList }) {
       </div>
 
       {/* Tampilkan konten sesuai tab yang aktif */}
-      {activeTab === 0 && <IsiCard CardList={CardList} />}
-      {activeTab === 1 && <Card2 />}
-      {activeTab === 2 && <Card3 />}
+      {activeTab === 0 && <Mobile CardList={CardList} />}
+      {activeTab === 1 && <Pc CardList={CardList} />}
+      {activeTab === 2 && <Voucher CardList={CardList} />}
     </div>
   );
 }
 
 TabCard.propTypes = {
-  CardList: PropTypes.array.isRequired, 
+  CardList: PropTypes.bool.isRequired, 
 };
 
 export default TabCard;

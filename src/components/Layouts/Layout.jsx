@@ -7,9 +7,8 @@ import { IoGameControllerOutline } from 'react-icons/io5';
 import { CiCalculator2 } from 'react-icons/ci';
 import { TbZodiacLibra } from 'react-icons/tb';
 import { BsSearch } from 'react-icons/bs';
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes from 'prop-types'; 
 
-// eslint-disable-next-line react/prop-types
 const Layout = ({ expanded, toggleExpansion, handleSearchClick }) => {
     const [showLogo, setShowLogo] = useState(false); 
     const location = useLocation();
@@ -101,7 +100,9 @@ const Layout = ({ expanded, toggleExpansion, handleSearchClick }) => {
 };
 
 Layout.propTypes = {
-    CardList: PropTypes.array.isRequired, 
+    expanded: PropTypes.bool.isRequired, 
+    toggleExpansion: PropTypes.func.isRequired, 
+    handleSearchClick: PropTypes.func.isRequired, 
   };
 
 export default Layout;

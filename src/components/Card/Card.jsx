@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './Card.css'
 import axios from 'axios';
 
 const Card = () => {
@@ -9,9 +10,18 @@ const Card = () => {
   }, []);
 
   const getDataCard = () => { 
-    axios.get('http://localhost:3000/cards/popular')
+    const token = localStorage.getItem('token');
+    axios.get('http://localhost:3000/game/trending', {
+       headers: {
+           Authorization: `Bearer ${token}`, 
+       },
+    })
+    
       .then(response => {
-        setGames(response.data);
+        setGames(response.data.popularCards);
+        console.log(response.data)
+        console.log(Array.isArray(response.data.popularCards));
+
       })
       .catch(error => {
         console.error('Error fetching games:', error);
@@ -20,9 +30,18 @@ const Card = () => {
 
   return (
     <div className='w-full h-[32vh] mt-5 bg-transparent '>
-      <div className="flex gap-5 items-center  overflow-scroll scrollbar-hidden bg-transparent text-white w-full h-[30vh] pt-[2.9rem]">
+      <div className="flex gap-5 items-center justify-center  overflow-scroll scrollbar-hidden bg-transparent text-white w-full h-[30vh] pt-[2.9rem]">
       {games.length === 0 ? (
-          <p className="text-center text-white w-full">No data available</p>
+        <div>
+          <div className="flex justify-center">
+            <span className="circle animate-loader"></span>
+            <span className="circle animate-loader animation-delay-200"></span>
+            <span className="circle animate-loader animation-delay-400"></span>
+          </div>
+          <div className='flex justify-center'>
+            <p className='animate-bganimate'>No Popular Data Available</p>
+          </div>
+        </div>
         ) : (
           games.map(game => (
             <div key={game.id} className="w-[148px] relative h-[219px] bg-slate-500 px-20 flex flex-col items-center rounded-lg justify-between">

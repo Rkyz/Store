@@ -7,7 +7,7 @@ function SearchCard({ CardList }) {
   const [Voucher, setVoucher] = useState([]);
 
   const getDataCard = () => { 
-    axios.get('http://localhost:3000/cards/:id')
+    axios.get('http://localhost:3000/game/:id')
       .then(response => {
         setVoucher(response.data);
       })

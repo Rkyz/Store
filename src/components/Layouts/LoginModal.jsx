@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import PropTypes from 'prop-types';
 import { AiOutlineClose, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const LoginModal = ({ closeModal }) => {
     const [email, setEmail] = useState('');
@@ -20,11 +22,32 @@ const LoginModal = ({ closeModal }) => {
         setShowPassword(!showPassword);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Perform login logic here
-        closeModal();
+        
+        try {
+            const response = await axios.post('http://localhost:3000/auth/login', {
+                email,
+                password,
+            });
+    
+            if (response.status === 200) {
+                const token = response.data.token;
+                localStorage.setItem('token', token);
+                closeModal();
+                Swal.fire('Success', 'Login successful', 'success').then(() => {
+                    window.location.reload(); // Refresh halaman setelah menekan tombol OK
+                });
+            } else {
+                Swal.fire('Error', 'Login failed', 'error');
+            }
+        } catch (error) {
+            console.error('An error occurred during login:', error);
+            Swal.fire('Error', 'An error occurred during login', 'error');
+        }
     };
+    
+    
 
     return (
         <Transition.Root show={true} as={React.Fragment}>
