@@ -4,7 +4,7 @@ import ChatAdmin from "../../components/CustomerService/ChatAdmin"
 import { useState } from "react"
 import ButtonCS from "../../components/CustomerService/ButtonCS"
 
-const Game = () => {
+const HitungZodiac = () => {
   const [expanded, setExpanded] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const [openCs, setOpenCs] = useState(false);
@@ -32,7 +32,7 @@ const Game = () => {
     </div>
     <div className="max-lg:h-[50rem] scrollbar-hidden relative">
         <div className={`lg:ml-[130px] max-lg:mx-[30px] max-md:mx-[15px] lg:mr-[30px] h-[40vh]  ${searchActive ? 'max-lg:mx-[10px]' : ''}`}>
-          <p className="text-white mt-[130px]">Game</p>
+          <p className="text-white mt-[130px]">Zodiac</p>
         </div>
      </div>
     <ButtonCS toggleOpenCs={toggleOpenCs} openCs={openCs}/>
@@ -40,4 +40,4 @@ const Game = () => {
   )
 }
 
-export default Game
+export default HitungZodiac

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import { AiOutlineSend } from 'react-icons/ai';
+import { HiChevronLeft } from 'react-icons/hi';
 import { BsTrash } from 'react-icons/bs';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
 import { getBotResponse } from './messageResponses';
@@ -18,6 +19,17 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
     const audioRecorderRef = useRef(null);
     const audioPlayerRef = useRef(null);
     const Navigate = useNavigate();
+    const [iscontact, setContact] = useState(true);
+
+
+    const handleShowBot = () => {
+        setContact(false);
+    };
+    const handleCloseBot = () => {
+        setContact(true);
+    };
+    
+    
 
 
 
@@ -61,7 +73,7 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
             setIsRecording(false);
 
             setTimeout(() => {
-                const botResponse = getBotResponse(newMessage.toLowerCase()); // Use the imported function
+                const botResponse = getBotResponse(newMessage.toLowerCase());
                 setMessages([...newMessages, botResponse]);
             }, 500);
 
@@ -124,6 +136,8 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
         }
     };
 
+
+
     
 
     return (
@@ -131,37 +145,71 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
             <div className={`lg:w-full bg-DarkBad h-[50px] rounded-t-2xl flex justify-between items-center max-lg:hidden px-[20px] ${openCs ? '' : ' lg:hidden'}`}>
                 <ul className="flex">
                     <li className="flex items-center mr-1">
-                        <div className="w-[5px] h-[5px] bg-yellow-500 rounded-full"></div>
+
+                        <div className={`w-[5px] h-[5px] bg-yellow-500 rounded-full ${iscontact ? 'hidden':'flex'}`}></div>
                     </li>
-                    <li>Bot</li>
+                    <li>{iscontact ? 'Chat' : 'Bot'}</li>
                 </ul>
                 <ul>
                     <li>
+                        {iscontact ? (
                         <button onClick={toggleOpenCs} className='bg-transparent p-2 rounded-full'>
                             <MdOutlineClose />
                         </button>
+                        ):(
+                            <button onClick={handleCloseBot} className='bg-transparent p-2 rounded-full text-white'>
+                                <HiChevronLeft/>
+                            </button>
+                        )}
                     </li>
                 </ul>
             </div>
-            <div className="p-4 overflow-scroll scrollbar-hidden h-[500px]">
-                {messages.map((message, index) => (
-                    <div key={index} className={`mb-4 ${message.sender === 'user' ? 'text-right' : ''}`}>
-                        <div className={`p-2 rounded-lg ${message.sender === 'user' ? 'bg-gray-300 text-black' : 'bg-blue-700'}`}>
-                            {message.text}
-                            {message.image && <img src={message.image} alt="User" className="max-w-full mt-2" />}
-                            {message.audio && (
-                                <div className="flex items-center">
-                                    <audio ref={audioPlayerRef} controls className="mt-2">
-                                        <source src={message.audio} type="audio/webm" />
-                                        Your browser does not support the audio element.
-                                    </audio>
+                {
+                    iscontact
+                        ? (
+                        <div onClick={handleShowBot} className="p-4 overflow-scroll cursor-pointer scrollbar-hidden h-[500px] flex flex-col gap-2">
+                            <div className='w-full bg-DarkBad h-[75px] justify-center items-center rounded-md flex'>
+                                <div className='w-[21%] bg-transparent h-full py-5 flex items-center justify-center'>
+                                    <img src="idk" alt="idk" className='bg-white w-[65px] h-[65px] rounded-full'/>
                                 </div>
-                            )}
+                                <div className='w-[79%] pl-3'>
+                                    <p className='text-base'>Bot</p>
+                                    <p className='text-sm italic'>this is a bot</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-            <div className="flex flex-col px-5 gap-y-5 text-black w-full bottom-10 py-5 bg-DarkBad">
+                        )
+                        : (<div className={`p-4 overflow-scroll scrollbar-hidden h-[500px]`}>
+                            {
+                                messages.map((message, index) => (<div key={index} className={`mb-4 ${message.sender === 'user'
+                                        ? 'text-right'
+                                        : ''}`}>
+                                    <div className={`p-2 rounded-lg ${message.sender === 'user'
+                                            ? 'bg-gray-300 text-black'
+                                            : 'bg-blue-700'}`}>
+                                        {message.text}
+                                        {message.image && <img src={message.image} alt="User" className="max-w-full mt-2"/>}
+                                        {
+                                            message.audio && (<div className="flex items-center">
+                                                <audio ref={audioPlayerRef} controls="controls" className="mt-2">
+                                                    <source src={message.audio} type="audio/webm"/>
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                            </div>)
+                                        }
+                                    </div>
+                                </div>))
+                            }
+                        </div>
+                        )
+                }
+            {iscontact ? (
+          <div className="flex flex-col px-5 gap-y-5 text-black w-full bottom-10 py-5 bg-DarkBad">
+
+                <p>memek</p>
+                </div>
+            ):(
+          <div className="flex flex-col px-5 gap-y-5 text-black w-full bottom-10 py-5 bg-DarkBad">
                 <div className={`flex ${isRecording ? 'h-[42px]':'h-[42px]'}`}>
                     <input
                         type="text"
@@ -199,7 +247,8 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
                         onChange={(e) => setSelectedImage(URL.createObjectURL(e.target.files[0]))}
                     />
                 </div>
-            </div>
+            </div> 
+            )}
         </div>
     );
 };

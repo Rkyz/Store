@@ -87,7 +87,7 @@ const Layout = ({ expanded, toggleExpansion, handleSearchClick }) => {
                             </NavLink>
                         </li>
                         <li className={`h-[7vh] flex items-center px-8 ${expanded ? '' : 'bg-transparent'} ${currentPath === '/hitungzodiac' && expanded ? 'bg-blue-500' : ''}`}>
-                        <NavLink to='/hitungwr' className={`text-sm w-full flex items-center ${expanded ? 'flex-row gap-6' : 'flex-col hidden'}`}>
+                        <NavLink to='/hitungzodiac' className={`text-sm w-full flex items-center ${expanded ? 'flex-row gap-6' : 'flex-col hidden'}`}>
                             <TbZodiacLibra className='text-3xl font-bold' />
                             Zodiac
                         </NavLink>
