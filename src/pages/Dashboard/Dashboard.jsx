@@ -16,6 +16,7 @@ import ButtonCS from "../../components/CustomerService/ButtonCS";
 import ChatAdmin from "../../components/CustomerService/ChatAdmin";
 import SearchCard from "../../components/Card/SearchCard";
 import axios from "axios";
+import Menu from "../../components/Menu/Menu";
 
 const Dashboard = () => {
     const [expanded, setExpanded] = useState(false);
@@ -109,6 +110,25 @@ const Dashboard = () => {
                 <div className={`lg:ml-[130px] max-lg:mx-[30px] max-md:mx-[15px] lg:mr-[30px] h-[40vh]  ${searchActive ? 'max-lg:mx-[10px]' : ''
                               }`}>
                     <SwiperCard/>
+                    <div className="flex justify-between">
+                        <ul>
+                            <p className="text-yellow-500 mt-5 text-[12px] uppercase font-semibold ">
+                               Specialist MLBB & Joki
+                            </p>
+                            <h1 className="text-white text-[32px] font-bold">Khusus Mobile Legend</h1>
+                        </ul>
+                        <ul className="flex items-end gap-3">
+                            <button
+                                className="w-10 h-10 border border-white bg-white rounded-full text-center flex justify-center items-center">
+                                <GrLinkPrevious className="text-white"/>
+                            </button>
+                            <button
+                                className="w-10 h-10 border border-white bg-white rounded-full text-center flex justify-center items-center">
+                                <GrLinkNext className="text-white"/>
+                            </button>
+                        </ul>
+                    </div>
+                    <Menu/>
                     <div className="flex justify-between">
                         <ul>
                             <p className="text-yellow-500 mt-5 text-[12px] uppercase font-semibold ">
