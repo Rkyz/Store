@@ -170,11 +170,20 @@ const ChatAdmin = ({ openCs, toggleOpenCs }) => {
                         <div onClick={handleShowBot} className="p-4 overflow-scroll cursor-pointer scrollbar-hidden h-[500px] flex flex-col gap-2">
                             <div className='w-full bg-DarkBad h-[75px] justify-center items-center rounded-md flex'>
                                 <div className='w-[21%] bg-transparent h-full py-5 flex items-center justify-center'>
-                                    <img src="idk" alt="idk" className='bg-white w-[65px] h-[65px] rounded-full'/>
+                                    <img src="https://tse1.mm.bing.net/th?id=OIP.PdvBHXC28IuRgOx93NFejgHaFj&pid=Api&P=0&h=180" alt="idk" className='bg-white w-[60px] bg-contain h-[60px] rounded-full'/>
                                 </div>
                                 <div className='w-[79%] pl-3'>
                                     <p className='text-base'>Bot</p>
                                     <p className='text-sm italic'>this is a bot</p>
+                                </div>
+                            </div>
+                            <div className='w-full bg-DarkBad h-[75px] justify-center items-center rounded-md flex'>
+                                <div className='w-[21%] bg-transparent h-full py-5 flex items-center justify-center'>
+                                    <img src="https://tse1.mm.bing.net/th?id=OIP.g3pg9I7kmssUSN_oQxCQZQHaHa&pid=Api&P=0&h=180" alt="idk" className='bg-white w-[60px] bg-contain h-[60px] rounded-full'/>
+                                </div>
+                                <div className='w-[79%] pl-3'>
+                                    <p className='text-base'>User</p>
+                                    <p className='text-sm italic'>this is a user</p>
                                 </div>
                             </div>
                         </div>
