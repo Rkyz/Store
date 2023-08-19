@@ -91,5 +91,5 @@ export default function Dropdown({setIsLoggedIn}) {
 }
 
 Dropdown.propTypes = {
-    setIsLoggedIn: PropTypes.bool.isRequired,
+    setIsLoggedIn: PropTypes.func.isRequired,
   };

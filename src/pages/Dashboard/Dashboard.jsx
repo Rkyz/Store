@@ -16,7 +16,7 @@ import ButtonCS from "../../components/CustomerService/ButtonCS";
 import ChatAdmin from "../../components/CustomerService/ChatAdmin";
 import SearchCard from "../../components/Card/SearchCard";
 import axios from "axios";
-import Menu from "../../components/Menu/Menu";
+
 
 const Dashboard = () => {
     const [expanded, setExpanded] = useState(false);
@@ -25,6 +25,13 @@ const Dashboard = () => {
     const [searchActive, setSearchActive] = useState(false);
     const [videos, setVideos] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState(null);
+    const [activeTab, setActiveTab] = useState('all');
+      const [activeCategory, setActiveCategory] = useState('all'); // State for active category
+
+
+    const handleTabClick = (tab) => {
+      setActiveTab(tab);
+    };
 
     useEffect(() => {
         fetchVideosData();
@@ -79,9 +86,8 @@ const Dashboard = () => {
 
     const getUserSigninData = async () => {
         try {
-            const token = localStorage.getItem('token'); // Ambil token dari local storage
+            const token = localStorage.getItem('token'); 
             if (!token) {
-                // Jika tidak ada token, berikan respons sesuai kebutuhan Anda
                 return { success: false, message: "Token not found." };
             }
     
@@ -113,28 +119,65 @@ const Dashboard = () => {
                     <div className="flex justify-between">
                         <ul>
                             <p className="text-yellow-500 mt-5 text-[12px] uppercase font-semibold ">
-                               Specialist MLBB & Joki
-                            </p>
-                            <h1 className="text-white text-[32px] font-bold">Khusus Mobile Legend</h1>
-                        </ul>
-                        <ul className="flex items-end gap-3">
-                            <button
-                                className="w-10 h-10 border border-white bg-white rounded-full text-center flex justify-center items-center">
-                                <GrLinkPrevious className="text-white"/>
-                            </button>
-                            <button
-                                className="w-10 h-10 border border-white bg-white rounded-full text-center flex justify-center items-center">
-                                <GrLinkNext className="text-white"/>
-                            </button>
-                        </ul>
-                    </div>
-                    <Menu/>
-                    <div className="flex justify-between">
-                        <ul>
-                            <p className="text-yellow-500 mt-5 text-[12px] uppercase font-semibold ">
                                 Game Populer
                             </p>
                             <h1 className="text-white text-[32px] font-bold">Tren Sekarang</h1>
+                            <div className="py-4">
+                            <ul className="flex gap-3">
+                                <li>
+                                <a
+                                    href=""
+                                    className={`text-white bg-Darkmode px-5 py-2 rounded-md hover:bg-blue-500 ${activeTab === 'all' ? 'bg-blue-500' : ''}`}
+                                    onClick={(e) => {
+                                    e.preventDefault();
+                                    handleTabClick('all');
+                                    setActiveCategory('all');
+                                    }}
+                                >
+                                    All
+                                </a>
+                                </li>
+                                <li>
+                                <a
+                                    href=""
+                                    className={`text-white bg-Darkmode px-5 py-2 rounded-md hover:bg-blue-500 ${activeTab === 'popular' ? 'bg-blue-500' : ''}`}
+                                    onClick={(e) => {
+                                    e.preventDefault();
+                                    handleTabClick('popular');
+                                    setActiveCategory('popular');
+                                    }}
+                                >
+                                    Popular
+                                </a>
+                                </li>
+                                <li>
+                                <a
+                                    href=""
+                                    className={`text-white bg-Darkmode px-5 py-2 rounded-md hover:bg-blue-500 ${activeTab === 'topup' ? 'bg-blue-500' : ''}`}
+                                    onClick={(e) => {
+                                    e.preventDefault();
+                                    handleTabClick('topup');
+                                    setActiveCategory('topup');
+                                    }}
+                                >
+                                    Topup
+                                </a>
+                                </li>
+                                <li>
+                                <a
+                                    href=""
+                                    className={`text-white bg-Darkmode px-5 py-2 rounded-md hover:bg-blue-500 ${activeTab === 'joki' ? 'bg-blue-500' : ''}`}
+                                    onClick={(e) => {
+                                    e.preventDefault();
+                                    handleTabClick('joki');
+                                    setActiveCategory('joki');
+                                    }}
+                                >
+                                    Joki
+                                </a>
+                                </li>
+                            </ul>
+                            </div>
                         </ul>
                         <ul className="flex items-end gap-3">
                             <button
@@ -147,9 +190,9 @@ const Dashboard = () => {
                             </button>
                         </ul>
                     </div>
-                    <Card/>
+                    <Card activeCategory={activeCategory}/>
                     <div 
-                            className={`w-full flex justify-start gap-3 ${
+                            className={`w-full flex justify-start gap-3 max-lg:mt-7 ${
                                 CardList ? 'mb-6' : ' mb-6'
                             } ${
                                 searchActive ? 'max-lg:fixed max-lg:flex-col bg-DarkBad max-lg:z-40 max-lg:top-0 max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:w-full max-lg:h-full items-start max-lg:p-10 overflow-y-scroll' : 'items-center'
@@ -158,7 +201,7 @@ const Dashboard = () => {
                             <input
                                 type="search"
                                 placeholder="Cari Disini"
-                                className={`max-lg:w-[90%] lg:w-[100%] bg-transparent border-[0.1px] rounded-xl p-2 text-white border-gray-500 focus:outline-none focus:border-gray-500 lg:hidden ${searchActive ? 'max-lg:w-full mb-14':''}`}
+                                className={`max-lg:w-[90%]  lg:w-[100%] bg-transparent border-[0.1px] rounded-xl p-2 text-white border-gray-500 focus:outline-none focus:border-gray-500 lg:hidden ${searchActive ? 'max-lg:w-full mb-14':''}`}
                             />
                             {searchActive && (
                                 <div className="bg-black w-full max-lg:mb-[80px] text-white h-full lg:hidden">

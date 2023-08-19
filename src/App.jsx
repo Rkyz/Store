@@ -6,6 +6,8 @@ import NotFound from './pages/NotFound/NotFound'
 import Game from './pages/Game/Game'
 import Promo from './pages/Promo/Promo'
 import HitungZodiac from './pages/HitungZodiac/HitungZodiac'
+import JokiPage from './pages/Joki/JokiPage' 
+import TopUpPage from './pages/TopUp/TopUpPage' 
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
         <Route path='/promo' element={<Promo />} />
         <Route path='/hitungwr' element={<HitungWR />} />
         <Route path='/hitungzodiac' element={<HitungZodiac />} />
+        <Route path='/joki' element={<JokiPage />} /> {/* Add route for Joki */}
+          <Route path='/topup/:name' element={<TopUpPage />} /> {/* Add route for Top Up */}
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </Router>

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        'roboto': ['Roboto', 'sans-serif'],
+      },
       colors:{
         'Darkmode': '#323048',
         'maindark': '#252F45',
