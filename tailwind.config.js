@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -8,11 +9,14 @@ export default {
     extend: {
       fontFamily:{
         'roboto': ['Roboto', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
       },
       colors:{
         'Darkmode': '#323048',
         'maindark': '#252F45',
         'DarkBad': '#13182B',
+        'lightmode' : '#FFFF',
+        'lightbad' : '#E3E4E8'
       },
       animation: {
         loader: 'loader 0.6s infinite alternate',
