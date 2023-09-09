@@ -30,7 +30,7 @@ const Layout = ({ expanded, toggleExpansion, handleSearchClick }) => {
             <nav
                 className={`dark:text-white text-black text-opacity-80 dark:bg-Darkmode bg-lightmode z-50 ${
                     expanded
-                    ? 'w-[260px] max-lg:h-full max-lg:bg-Darkmode max-lg:bg-opacity-30 lg:transition-width lg:duration-1000'
+                    ? 'w-[260px] max-lg:h-full max-lg:bg-Darkmode max-lg:bg-opacity-30'
                     : 'w-[100px] lg:transition-width max-lg:transition-width max-lg:duration-0'
                 } h-[100%] max-lg:h-[90px] fixed bottom-0 left-0 right-0 backdrop-blur-md bg-opacity-50 max-lg:bg-opacity-100 justify-center flex felx-col max-lg:w-full`}
                 >
@@ -54,7 +54,7 @@ const Layout = ({ expanded, toggleExpansion, handleSearchClick }) => {
                             <p className='max-lg:hidden'>Promo</p>
                         </NavLink>
                     </li>
-                    <li className={`lg:hidden h-[7vh] flex items-center px-6 relative bottom-7 ${expanded ? 'max-lg:hidden' : ''} ${currentPath === '/game' ? 'dark:bg-blue-500 bg-yellow-500    text-white' : ''}`}>
+                    <li className={`lg:hidden h-[7vh] flex items-center px-6 relative bottom-7 ${expanded ? 'max-lg:hidden' : ''}`}>
                     <button
                         className={`text-sm flex bg-yellow-500 hover:bg-blue-500 transition-colors duration-500 w-[65px] h-[65px] rounded-full justify-center items-center ${expanded ? 'flex-row gap-6' : 'flex-col'}`}
                         onClick={handleSearchClick}
@@ -75,7 +75,7 @@ const Layout = ({ expanded, toggleExpansion, handleSearchClick }) => {
                         <p className={`max-lg:hidden ${showLogo ? 'block' : 'hidden'}`}>Logo</p>
                     </li>
                     <span className={`w-full h-[0.2px] max-lg:hidden bg-white ${expanded ? ' h-[0.5px]' : 'hidden'}`}></span>
-                    <div className={`absolute max-lg:overflow-hidden lg:relative max-lg:backdrop-blur-3xl max-lg:bg-Darkmode max-lg:z-50 max-lg:text-white max-lg:rounded-ss-[2rem] max-lg:rounded-se-[2rem] ${expanded ? 'h-auto max-lg:w-[32rem] max-md:w-[96%] bottom-0 pb-10' : ' hidden'}`} style={{ backdropFilter: expanded ? 'none' : 'blue(10px)' }}>
+                    <div className={`absolute max-lg:overflow-hidden lg:relative max-lg:backdrop-blur-3xl dark:max-lg:bg-DarkBad max-lg:bg-lightmode max-lg:z-50 dark:max-lg:text-white max-lg:rounded-ss-[2rem] max-lg:rounded-se-[2rem] ${expanded ? 'h-auto max-lg:w-[32rem] max-md:w-[96%] bottom-0 pb-10' : ' hidden'}`} style={{ backdropFilter: expanded ? 'none' : 'blue(10px)' }}>
                         <li className={`lg:hidden h-[7vh] flex items-center px-8 justify-between ${expanded ? '' : 'bg-transparent'} ${currentPath === '/hitungwr' && expanded ? 'dark:bg-blue-500 bg-gray-400 text-white' : ''}`}>
                             <h1>Logo</h1>
                             <button onClick={toggleExpansion}>Close</button> 

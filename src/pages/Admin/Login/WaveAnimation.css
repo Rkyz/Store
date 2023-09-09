@@ -1,0 +1,15 @@
+/* WaveAnimation.css */
+
+@keyframes wave-animation {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .wave {
+    animation: wave-animation 5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  }
+  

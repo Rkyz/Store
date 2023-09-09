@@ -34,6 +34,7 @@ const TopLayout = () => {
                 className="max-lg:hidden w-5/12 bg-transparent border-[0.1px] rounded-xl p-2 border-black border-opacity-30 dark:text-white text-black text-opacity-80 dark:border-gray-500 focus:outline-none dark:focus:border-gray-500"
             />
             <ul className='flex gap-7 justify-center items-center'>
+            <DarkModeToggle/>
                 {isLoggedIn ? (
                     <div>
                         <Dropdown setIsLoggedIn={setIsLoggedIn}/>
@@ -48,7 +49,6 @@ const TopLayout = () => {
                         </button>
                     </li>
                 )}
-                <DarkModeToggle/>
             </ul>
 
             {/* The modal */}

@@ -45,7 +45,7 @@ export default function Dropdown({setIsLoggedIn}) {
         <div>
         <Menu.Button className="flex items-center gap-2 w-full justify-center rounded-md bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <UserPicture/>
-                <p>{username}</p>
+                <p className='text-black dark:text-white'>{username}</p>
             </Menu.Button>
         </div>
         <Transition

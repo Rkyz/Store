@@ -16,7 +16,9 @@ export default {
         'maindark': '#252F45',
         'DarkBad': '#13182B',
         'lightmode' : '#FFFF',
-        'lightbad' : '#E3E4E8'
+        "primary": "#6777EF", //"#1565C0",
+        'lightbad' : '#E3E4E8',
+        'lightsun' : '#F4F6F9'
       },
       animation: {
         loader: 'loader 0.6s infinite alternate',
